@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmain000001"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_maingd"]
+[ext_resource type="PackedScene" uid="uid://bplayer00001" path="res://player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://bactzone0001" path="res://activity_zone.tscn" id="3_zone"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_maingd")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(200.0, 300.0)
+
+[node name="ActivityZone1" parent="." instance=ExtResource("3_zone")]
+position = Vector2(400.0, 200.0)
+
+[node name="ActivityZone2" parent="." instance=ExtResource("3_zone")]
+position = Vector2(700.0, 400.0)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="PopupPanel" type="Panel" parent="UILayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+visible = false
+
+[node name="VBox" type="VBoxContainer" parent="UILayer/PopupPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PopupMessage" type="Label" parent="UILayer/PopupPanel/VBox"]
+text = "What would you like to do?"
+horizontal_alignment = 1
+
+[node name="ButtonRow" type="HBoxContainer" parent="UILayer/PopupPanel/VBox"]
+alignment = 1
+
+[node name="YesButton" type="Button" parent="UILayer/PopupPanel/VBox/ButtonRow"]
+custom_minimum_size = Vector2(80.0, 0.0)
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="UILayer/PopupPanel/VBox/ButtonRow"]
+custom_minimum_size = Vector2(80.0, 0.0)
+text = "No"
+
+[connection signal="pressed" from="UILayer/PopupPanel/VBox/ButtonRow/YesButton" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="UILayer/PopupPanel/VBox/ButtonRow/NoButton" to="." method="_on_no_pressed"]
