@@ -9,6 +9,12 @@ func _ready() -> void:
 	$ActivityZone2.player_entered_zone.connect(_on_zone_entered)
 	$ActivityZone2.player_exited_zone.connect(_on_zone_exited)
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ENTER:
+		if $UILayer/PopupPanel.visible:
+			_on_yes_pressed()
+			get_viewport().set_input_as_handled()
+
 func _on_player_interacted() -> void:
 	if current_zone != null and not $UILayer/PopupPanel.visible:
 		$UILayer/PopupPanel.show()
