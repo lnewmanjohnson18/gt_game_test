@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmenu000001"]
+
+[ext_resource type="Script" uid="uid://bmenu0gd001" path="res://menu.gd" id="1_menugd"]
+
+[node name="Menu" type="Control"]
+script = ExtResource("1_menugd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+custom_minimum_size = Vector2(280, 0)
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "gt_game_test"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+
+[node name="Spacer" type="Control" parent="Center/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 24)
+
+[node name="SinglePlayerButton" type="Button" parent="Center/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(280, 50)
+text = "Single Player"
+
+[node name="MultiplayerButton" type="Button" parent="Center/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(280, 50)
+text = "Multiplayer"
+
+[node name="SettingsButton" type="Button" parent="Center/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(280, 50)
+text = "Settings"
+
+[connection signal="pressed" from="Center/VBox/SinglePlayerButton" to="." method="_on_single_player_pressed"]
